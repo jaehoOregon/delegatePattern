@@ -7,13 +7,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, textTransferDelegate {
 
+    @IBOutlet weak var firstVCLabel: UILabel!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
+    func didEditingChanged(data: String) {
+        firstVCLabel.text = data
+        print("test\(data)")
+    }
 
+    @IBAction func btnDidTapped(_ sender: UIButton) {
+        
+        let secondVC = storyboard?.instantiateViewController(withIdentifier: "SecondVC") as! SecondVC
+        secondVC.delegate = self
+        present(secondVC, animated: true, completion: nil)
+        
+    }
 }
+
+
+
+
+
 
